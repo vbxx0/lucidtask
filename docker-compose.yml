@@ -15,6 +15,9 @@ services:
       sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
     env_file:
       - .env
+    volumes:
+      - .:/app
+      - alembic_data:/app/alembic
 
   mysql:
     image: mysql:8.0
@@ -33,3 +36,4 @@ services:
 
 volumes:
   mysql_data:
+  alembic_data:
